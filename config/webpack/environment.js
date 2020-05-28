@@ -1,23 +1,26 @@
 const { environment } = require('@rails/webpacker')
-const erb = require('./loaders/erb')
 const webpack = require('webpack')
+const erbLoader = require('./loaders/erb')
+const jqueryLoader = require('./loaders/jquery')
 
-environment.plugins.prepend(
+// Plugins
+environment.plugins.append(
   'Provide',
   new webpack.ProvidePlugin({
-    jQuery: 'jquery',
     $: 'jquery',
+    jQuery: 'jquery',
     'window.jQuery': 'jquery',
+    'window.$': 'jquery',
     Popper: ['popper.js', 'default'],
-    Chart: 'chart.js',
-    Typed: 'typed.js',
     SVGInjector: 'svg-injector',
-    Noty: 'noty',
-    ClipboardJS: 'clipboard'
+    lozad: 'lozad'
   }),
   'MomentContextReplacement',
   new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|pl/)
 )
 
-environment.loaders.prepend('erb', erb)
+// Loaders
+environment.loaders.prepend('jQueryExpose', jqueryLoader)
+environment.loaders.prepend('erb', erbLoader)
+
 module.exports = environment

@@ -3,7 +3,7 @@
 // The verbose use of the `jQuery` variable instead of `$` is intentional so its use is easier to identify
 import { Controller } from 'stimulus'
 import moment from 'moment'
-import events from '../events'
+import events from '../src/events'
 
 function init (element) {
   jQuery(element).daterangepicker({

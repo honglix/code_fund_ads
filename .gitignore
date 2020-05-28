@@ -19,19 +19,20 @@
 /storage/*
 !/storage/.keep
 
-/node_modules
-/yarn-error.log
 
 /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Assets
+.yarn-integrity
+/node_modules
 /public/packs
 /public/packs-test
-/node_modules
+/yarn-error.log
 yarn-debug.log*
-.yarn-integrity
 
 # If you want to use `heroku local`, create the following file with the content `exec "$@"`
 /bin/start-pgbouncer-stunnel

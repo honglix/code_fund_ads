@@ -161,8 +161,8 @@ module ApplicationHelper
     end
   end
 
-  def noty_flash
-    flash_messages = []
+  def flash_messages
+    messages = []
     flash.each do |type, message|
       next unless message.is_a? String
       type = "success" if type == "notice"
@@ -171,10 +171,9 @@ module ApplicationHelper
         type: type,
         text: message
       }
-      text = "<script id='noty'>new Noty(#{body.to_json}).show();</script>"
-      flash_messages << text.html_safe if message
+      messages << body.to_json&.html_safe if message
     end
-    flash_messages.join("\n").html_safe
+    messages.join("\n").html_safe
   end
 
   def pagy_entries(pagy)

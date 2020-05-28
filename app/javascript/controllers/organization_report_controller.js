@@ -1,5 +1,4 @@
 import ApplicationController from './application_controller'
-import events from '../events'
 import { toArray } from '../src/utils'
 import moment from 'moment'
 

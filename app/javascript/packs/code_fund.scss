@@ -1,0 +1,16 @@
+// =========== Webpack ===========
+@import '~animate.css/animate';
+@import '~bootstrap-daterangepicker/daterangepicker';
+@import '~bootstrap-select/dist/css/bootstrap-select.min';
+@import '~bootstrap/scss/bootstrap';
+@import '~noty/src/noty';
+@import '~noty/src/themes/mint';
+@import '~select2-bootstrap-theme/dist/select2-bootstrap';
+@import '~select2/dist/css/select2';
+@import '~trix/dist/trix';
+
+// =========== Vendor ===========
+@import '~assets/stylesheets/theme.min';
+
+// =========== Local ===========
+@import '../stylesheets/application';
