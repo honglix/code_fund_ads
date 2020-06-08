@@ -1,6 +1,6 @@
 class CreatePixels < ActiveRecord::Migration[6.0]
   def change
-    create_table :pixels, id: :uuid do |t|
+    create_table :pixels, id: :uuid, default: -> { "gen_random_uuid()" } do |t|
       t.string :name, null: false
       t.text :description
       t.references :organization, null: false, foreign_key: true

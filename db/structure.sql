@@ -67,8 +67,6 @@ COMMENT ON EXTENSION tablefunc IS 'functions that manipulate whole tables, inclu
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
-
 --
 -- Name: action_mailbox_inbound_emails; Type: TABLE; Schema: public; Owner: -
 --
@@ -969,24 +967,24 @@ ALTER SEQUENCE public.organizations_id_seq OWNED BY public.organizations.id;
 CREATE TABLE public.pixel_conversions (
     id bigint NOT NULL,
     pixel_id uuid NOT NULL,
-    impression_id uuid NOT NULL,
+    impression_id uuid,
     test boolean DEFAULT false NOT NULL,
     pixel_name character varying DEFAULT ''::character varying NOT NULL,
     pixel_value_cents integer DEFAULT 0 NOT NULL,
     pixel_value_currency character varying DEFAULT 'USD'::character varying NOT NULL,
-    advertiser_id bigint NOT NULL,
-    publisher_id bigint NOT NULL,
-    campaign_id bigint NOT NULL,
-    creative_id bigint NOT NULL,
-    property_id bigint NOT NULL,
-    ip_address character varying NOT NULL,
-    user_agent text NOT NULL,
+    advertiser_id bigint,
+    publisher_id bigint,
+    campaign_id bigint,
+    creative_id bigint,
+    property_id bigint,
+    ip_address character varying,
+    user_agent text,
     country_code character varying,
     postal_code character varying,
     latitude numeric,
     longitude numeric,
-    displayed_at timestamp without time zone NOT NULL,
-    displayed_at_date date NOT NULL,
+    displayed_at timestamp without time zone,
+    displayed_at_date date,
     clicked_at timestamp without time zone,
     clicked_at_date date,
     fallback_campaign boolean DEFAULT false NOT NULL,
@@ -2903,13 +2901,6 @@ CREATE INDEX index_pixel_conversions_on_clicked_at_date ON public.pixel_conversi
 
 
 --
--- Name: index_pixel_conversions_on_clicked_at_hour; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_pixel_conversions_on_clicked_at_hour ON public.pixel_conversions USING btree (date_trunc('hour'::text, clicked_at));
-
-
---
 -- Name: index_pixel_conversions_on_country_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2928,13 +2919,6 @@ CREATE INDEX index_pixel_conversions_on_creative_id ON public.pixel_conversions 
 --
 
 CREATE INDEX index_pixel_conversions_on_displayed_at_date ON public.pixel_conversions USING btree (displayed_at_date);
-
-
---
--- Name: index_pixel_conversions_on_displayed_at_hour; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_pixel_conversions_on_displayed_at_hour ON public.pixel_conversions USING btree (date_trunc('hour'::text, displayed_at));
 
 
 --
