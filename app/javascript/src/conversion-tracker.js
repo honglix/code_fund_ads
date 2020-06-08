@@ -29,7 +29,7 @@ export default class {
   // Saves the impressionId to localStorage
   set impressionId (value) {
     if (!value) return localStorage.removeItem(this.localStorageKey)
-    if (getUtmImpression()) return
+    if (this.impressionId) return
     try {
       const createdAt = new Date()
       const data = { value, createdAt }
@@ -49,8 +49,9 @@ export default class {
       if (!this.expired(createdAt)) return value
       localStorage.removeItem(this.localStorageKey)
     } catch (ex) {
-      const message = `CodeFund failed to read the utm_impression value from localStorage! ${ex.message}`
-      console.log(message)
+      console.log(
+        `CodeFund failed to read the utm_impression value from localStorage! ${ex.message}`
+      )
     }
     return null
   }
